@@ -1,38 +1,86 @@
-.App {
-  text-align: center;
+@font-face {
+  font-family: DancingScript;
+  src: local("DancingScript-VariableFont_wght"),
+    url(./components/styles/DancingScript-VariableFont_wght.ttf);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@font-face {
+  font-family: RockSalt;
+  src: local("RockSalt-Regular"), url(./components/styles/RockSalt-Regular.ttf);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+@font-face {
+  font-family: Audiowide;
+  src: local("Audiowide-Regular"),
+    url(./components/styles/Audiowide-Regular.ttf);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+@font-face {
+  font-family: Roboto;
+  src: local("Roboto-Medium"), url(./components/styles/Roboto-Medium.ttf);
+}
+
+html {
+  background-color: black;
+}
+
+body {
+  margin: 0;
+}
+
+div#root {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  font-family: Roboto;
+  color: orangered;
+}
+
+header {
+  padding-bottom: 1.5vw;
+  /* border-bottom: 3vh dotted #370064; */
+  background-image: linear-gradient(0deg, #370064, #000000);
+  transform: skewY(-11deg);
+}
+
+header > div.container {
+  display: grid;
+  grid-template-columns: 1fr max-content;
+  grid-template-rows: max-content max-content;
+  transform: skewY(11deg);
+}
+
+header > div.container > div.title {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 4vh;
+}
+header > div.container > div.title > div.memoryHeader {
+  font-family: DancingScript;
+  font-size: 8vh;
+}
+header > div.container > div.title > div.cardHeader {
+  font-family: Audiowide;
+  font-size: 6vh;
+}
+header > div.container > div.title > div.gameHeader {
+  font-family: RockSalt;
+  font-size: 6vh;
 }
 
-.App-link {
-  color: #61dafb;
+main {
+  position: relative;
+  z-index: 2;
+  overflow-y: auto;
+  display: grid;
+  grid-template-rows: max-content 1fr;
+  justify-items: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+footer {
+  text-align: center;
 }

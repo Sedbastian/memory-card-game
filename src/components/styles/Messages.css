@@ -1,0 +1,9 @@
+main > div.messages {
+  border: 0.2vh solid orangered;
+  border-radius: 1vh;
+  font-size: 3vh;
+  margin-top: 2vh;
+  margin-bottom: 4vh;
+  padding: 0.5vh;
+  text-align: center;
+}

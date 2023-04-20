@@ -1,7 +1,9 @@
-.hidden {
-  display: none;
+main > div.getReady {
+  font-size: 4vh;
 }
 
-.showing {
-  display: block;
+main > div.board {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }

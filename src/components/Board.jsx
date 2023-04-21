@@ -2,11 +2,16 @@ import React, { Fragment, useRef, useEffect } from "react";
 import "./styles/Board.css";
 import Card from "./Card";
 
-export default function Board({ level, images, addClickedCard, tryAgain }) {
+export default function Board({
+  level,
+  images,
+  addClickedCard,
+  tryAgain,
+  imagesArrayLength
+}) {
   const boardRef = useRef(null);
   const getReadyRef = useRef(null);
-  // const tryAgainRef = useRef(null);
-
+  
   if (tryAgain) {
     const boardCopyRef = boardRef.current;
     const getReadyCopyRef = getReadyRef.current;
@@ -16,7 +21,7 @@ export default function Board({ level, images, addClickedCard, tryAgain }) {
     setTimeout(() => {
       getReadyCopyRef.style.display = "none";
       boardCopyRef.style.display = "flex";
-    }, 4000);
+    }, 3000);
   }
 
   useEffect(() => {
@@ -25,7 +30,7 @@ export default function Board({ level, images, addClickedCard, tryAgain }) {
     setTimeout(() => {
       getReadyCopyRef.style.display = "none";
       boardCopyRef.style.display = "flex";
-    }, 4000);
+    }, 3000);
     return () => {
       boardCopyRef.style.display = "none";
       getReadyCopyRef.style.display = "flex";
@@ -35,9 +40,13 @@ export default function Board({ level, images, addClickedCard, tryAgain }) {
   return (
     <Fragment>
       <div ref={getReadyRef} className="getReady">
-        {tryAgain
-          ? "Esa última ya la habías elegido! Empezá de nuevo."
-          : "Preparate para el Nivel: " + level + "..."}
+        {imagesArrayLength >= level * 3
+          ? tryAgain
+            ? "Esa última ya la habías elegido! Empezá de nuevo."
+            : (level === 1
+                ? "Preparate para el Nivel: " + level + "..."
+                : "¡Muy bien! Preparate para el Nivel: " + level + "...")
+          : "¡Ganaste, pasaste todos los niveles!"}
       </div>
       {/* <div ref={tryAgainRef} className="tryAgain"></div> */}
       <div ref={boardRef} className="board" style={{ display: "none" }}>

@@ -6,7 +6,6 @@ export default function Messages({ level, levelScore, tryAgain, newLevel }) {
 
   useEffect(() => {
     const messagesCopyRef = messagesRef.current;
-    console.log({ tryAgain, newLevel, or: tryAgain || newLevel });
     const timeoutId = setTimeout(
       () => {
         messagesCopyRef.style.opacity = "1";

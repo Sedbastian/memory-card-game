@@ -4,17 +4,30 @@ import { randomElements, shuffle } from "./arrayFunctions";
 import Score from "./components/Score";
 import Messages from "./components/Messages";
 import Board from "./components/Board";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import GithubSvg from "./components/GithubSvg";
 
 function App() {
   const path = require.context("./components/images", false, /\.jpg$/);
   const images = path.keys().map(path);
+  const [levelImages, setLevelImages] = useState(randomElements(images, 3));
 
   const [level, setLevel] = useState(1);
   const [levelScore, setLevelScore] = useState(0);
-  const [highScore, setHighScore] = useState({ level: 0, levelScore: 0 });
-  const [levelImages, setLevelImages] = useState(randomElements(images, 3));
+
+  const highestLevel = localStorage.getItem("highestLevel");
+  const highestLevelScore = localStorage.getItem("highestLevelScore");
+
+  let initialHighScores = { level: 0, levelScore: 0 };
+
+  if (highestLevel !== null && highestLevel !== "") {
+    initialHighScores.level = highestLevel;
+  }
+  if (highestLevelScore !== null && highestLevelScore !== "") {
+    initialHighScores.levelScore = highestLevelScore;
+  }
+
+  const [highScore, setHighScore] = useState(initialHighScores);
+
   const tryAgainRef = useRef(false);
   const newLevelRef = useRef(true);
   // const nImagesLoaded = useRef(0);
@@ -51,6 +64,7 @@ function App() {
     setLevelScore(levelScore + 1);
     if (levelScore + 1 > highScore.levelScore) {
       setHighScore({ level: level, levelScore: levelScore + 1 });
+      localStorage.setItem("highestLevelScore", levelScore + 1);
     }
   }
 
@@ -62,13 +76,17 @@ function App() {
   }
 
   function levelCompleted() {
-    setLevelImages(randomElements(images, (level + 1) * 3));
     setLevelScore(0);
     if (level + 1 > highScore.level) {
       setHighScore({ level: level + 1, levelScore: 0 });
+      localStorage.setItem("highestLevel", level + 1);
+      localStorage.setItem("highestLevelScore", 0);
     }
     newLevelRef.current = true;
-    setLevel(level + 1);
+    if ((level + 1) * 3 <= images.length) {
+      setLevelImages(randomElements(images, (level + 1) * 3));
+      setLevel(level + 1);
+    }
   }
 
   return (
@@ -99,14 +117,20 @@ function App() {
           addScore={addScore}
           tryAgain={tryAgainRef.current}
           levelCompleted={levelCompleted}
+          imagesArrayLength={images.length}
         />
       </main>
       <footer className="footerTag">
-        <a href="https://github.com/Sedbastian">
+        <a href="https://github.com/Sedbastian" className="sedbastian">
           Sedbastian
-          {/* <FontAwesomeIcon icon={faGithub} /> */}
         </a>
-        &nbsp;2023
+        <a
+          href="https://github.com/Sedbastian/memory-card-game"
+          className="github"
+        >
+          <GithubSvg />
+        </a>
+        <div className="year">2023</div>
       </footer>
     </Fragment>
   );

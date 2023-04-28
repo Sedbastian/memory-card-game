@@ -102,10 +102,14 @@ function App() {
     setLevelImages(randomElements(images, 1 * imagesAddedPerLevel));
   }
 
-  return imageSliderShowing ? (
-    <ImageSlider imagesArray={images} imageSliderToggle={imageSliderToggle} />
-  ) : (
+  return (
     <Fragment>
+      {imageSliderShowing && (
+        <ImageSlider
+          imagesArray={images}
+          imageSliderToggle={imageSliderToggle}
+        />
+      )}
       <header>
         <div className="memoryHeader">Memory</div>
         <div className="cardHeader">Card</div>
@@ -133,9 +137,9 @@ function App() {
               newLevel={newLevelRef.current}
             />
             <Board
+              levelScore={levelScore}
               level={level}
               images={[...levelImages]}
-              levelScore={levelScore}
               addClickedCard={addClickedCard}
               addScore={addScore}
               tryAgain={tryAgainRef.current}

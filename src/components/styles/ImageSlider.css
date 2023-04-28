@@ -1,5 +1,8 @@
 div.imageSliderContainer {
-  height: 100%;
+  position: absolute;
+  z-index: 9;
+  background-color: black;
+  height: 100vh;
   grid-row: 1 / 4;
   display: grid;
   grid-template-rows: max-content 1fr max-content;

@@ -26,6 +26,7 @@ html {
 
 body {
   margin: 0;
+  background-color: black;
 }
 
 div#root {
@@ -63,6 +64,7 @@ header > div.gameHeader {
 }
 
 div#root > button.imageSlider {
+  color: black;
   position: absolute;
   top: 1vh;
   left: 1vh;

@@ -48,6 +48,7 @@ div.highScore > div.record {
 }
 
 div.record > button {
+  color: black;
   margin-left: 3vh;
   border-style: none;
   border-radius: 2vh;

@@ -1,21 +1,29 @@
-import React, { Fragment, useRef, useEffect } from "react";
+import React, { forwardRef, Fragment, useRef, useEffect } from "react";
 import "./styles/Board.css";
 import Card from "./Card";
 
-export default function Board({ level, images, addClickedCard, tryAgain }) {
+export default function Board({
+  levelScore,
+  level,
+  images,
+  addClickedCard,
+  tryAgain
+}) {
   const boardRef = useRef(null);
   const getReadyRef = useRef(null);
 
   if (tryAgain) {
     const boardCopyRef = boardRef.current;
     const getReadyCopyRef = getReadyRef.current;
-    getReadyCopyRef.style.display = "flex";
-    boardCopyRef.style.display = "none";
+    if (boardCopyRef && getReadyCopyRef) {
+      getReadyCopyRef.style.display = "flex";
+      boardCopyRef.style.display = "none";
 
-    setTimeout(() => {
-      getReadyCopyRef.style.display = "none";
-      boardCopyRef.style.display = "flex";
-    }, 3000);
+      setTimeout(() => {
+        getReadyCopyRef.style.display = "none";
+        boardCopyRef.style.display = "flex";
+      }, 3000);
+    }
   }
 
   useEffect(() => {
@@ -30,6 +38,10 @@ export default function Board({ level, images, addClickedCard, tryAgain }) {
       getReadyCopyRef.style.display = "flex";
     };
   }, [level]);
+
+  useEffect(() => {
+
+  }, [levelScore]);
 
   return (
     <Fragment>

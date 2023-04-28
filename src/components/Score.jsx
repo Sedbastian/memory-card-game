@@ -17,10 +17,13 @@ export default function Score({
     function removeEffectClass() {
       ref.classList.remove("effect");
     }
-    ref.addEventListener("transitionend", removeEffectClass);
-    ref.classList.add("effect");
+    setTimeout(() => {
+      ref.addEventListener("transitionend", removeEffectClass);
+      ref.classList.add("effect");
+    }, 100);
     return () => {
       ref.removeEventListener("transitionend", removeEffectClass);
+      ref.classList.remove("effect");
     };
   }, [levelScore]);
 
@@ -29,10 +32,13 @@ export default function Score({
     function removeEffectClass() {
       ref.classList.remove("effect");
     }
-    ref.addEventListener("transitionend", removeEffectClass);
-    ref.classList.add("effect");
+    setTimeout(() => {
+      ref.addEventListener("transitionend", removeEffectClass);
+      ref.classList.add("effect");
+    }, 100);
     return () => {
       ref.removeEventListener("transitionend", removeEffectClass);
+      ref.classList.remove("effect");
     };
   }, [level]);
 
@@ -41,10 +47,13 @@ export default function Score({
     function removeEffectClass() {
       ref.classList.remove("effect");
     }
-    ref.addEventListener("transitionend", removeEffectClass);
-    ref.classList.add("effect");
+    setTimeout(() => {
+      ref.addEventListener("transitionend", removeEffectClass);
+      ref.classList.add("effect");
+    }, 100);
     return () => {
       ref.removeEventListener("transitionend", removeEffectClass);
+      ref.classList.remove("effect");
     };
   }, [highScore.levelScore]);
 
@@ -53,10 +62,13 @@ export default function Score({
     function removeEffectClass() {
       ref.classList.remove("effect");
     }
-    ref.addEventListener("transitionend", removeEffectClass);
-    ref.classList.add("effect");
+    setTimeout(() => {
+      ref.addEventListener("transitionend", removeEffectClass);
+      ref.classList.add("effect");
+    }, 100);
     return () => {
       ref.removeEventListener("transitionend", removeEffectClass);
+      ref.classList.remove("effect");
     };
   }, [highScore.level]);
 

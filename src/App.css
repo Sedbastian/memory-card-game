@@ -31,45 +31,53 @@ body {
 div#root {
   height: 100vh;
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto max-content 1fr auto;
   font-family: Roboto;
   color: orangered;
 }
 
 header {
+  margin-top: calc(4vh - 2vw);
+  padding-left: 2vh;
   padding-bottom: 1.5vw;
-  /* border-bottom: 3vh dotted #370064; */
   background-image: linear-gradient(0deg, #370064, #000000);
-  transform: skewY(-11deg);
+  transform: skewY(-11deg) translateY(-4vw);
 }
 
-header > div.container {
-  display: grid;
-  grid-template-columns: 1fr max-content;
-  grid-template-rows: max-content max-content;
-  transform: skewY(11deg);
-}
-
-header > div.container > div.title {
-  grid-column: 1 / 2;
-  grid-row: 1 / 2;
-  margin-left: auto;
-  margin-right: auto;
+header {
   display: flex;
   align-items: center;
   gap: 4vh;
 }
-header > div.container > div.title > div.memoryHeader {
+header > div.memoryHeader {
   font-family: DancingScript;
-  font-size: 8vh;
+  font-size: 6vh;
 }
-header > div.container > div.title > div.cardHeader {
+header > div.cardHeader {
   font-family: Audiowide;
-  font-size: 6vh;
+  font-size: 4.5vh;
 }
-header > div.container > div.title > div.gameHeader {
+header > div.gameHeader {
   font-family: RockSalt;
-  font-size: 6vh;
+  font-size: 4.5vh;
+}
+
+div#root > button.imageSlider {
+  position: absolute;
+  top: 1vh;
+  left: 1vh;
+  border-style: none;
+  border-radius: 2vh;
+  background-color: forestgreen;
+  font-family: Roboto;
+  font-size: 2vh;
+}
+
+div#root > button.imageSlider:hover {
+  cursor: pointer;
+  background-color: orangered;
+  font-weight: bold;
+  transform: scale(1.05);
 }
 
 main {
@@ -79,6 +87,25 @@ main {
   display: grid;
   grid-template-rows: max-content 1fr;
   justify-items: center;
+  /* align-content: center; */
+}
+
+main::-webkit-scrollbar {
+  width: 18px; /* width of the entire scrollbar */
+}
+
+main::-webkit-scrollbar-track {
+  background: #000000; /* color of the tracking area */
+}
+
+main::-webkit-scrollbar-thumb {
+  background-color: rgb(146, 127, 255); /* color of the scroll thumb */
+  border-radius: 20px; /* roundness of the scroll thumb */
+  border: 6px solid #000000; /* creates padding around scroll thumb */
+}
+
+main::-webkit-scrollbar-thumb:hover {
+  background-image: linear-gradient(45deg, #654ea3, #370064);
 }
 
 footer {
@@ -90,11 +117,11 @@ footer a {
   text-decoration: none;
 }
 footer a.sedbastian {
-color: rgb(85, 26, 139);
+  color: rgb(85, 26, 139);
 }
 footer a.sedbastian:hover {
   color: rgb(133, 41, 219);
-  }
+}
 footer a.github {
   color: forestgreen;
 }

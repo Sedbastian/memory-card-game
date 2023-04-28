@@ -1,7 +1,12 @@
 import React, { Fragment, useEffect, useRef } from "react";
 import "./styles/Score.css";
 
-export default function Score({ level, levelScore, highScore }) {
+export default function Score({
+  level,
+  levelScore,
+  highScore,
+  resetHighScore
+}) {
   const scoreRef = useRef(null);
   const levelRef = useRef(null);
   const highScoreLevelScoreRef = useRef(null);
@@ -60,28 +65,30 @@ export default function Score({ level, levelScore, highScore }) {
       <div className="score">
         <div className="scoreTitle">Puntaje:</div>
         <div className="level">
-          Nivel:{" "}
+          Nivel:
           <div ref={levelRef} className="effectable">
             {level}
           </div>
         </div>
         <div className="levelScore">
-          Imágenes sin repetir:{" "}
+          Imágenes sin repetir:
           <div ref={scoreRef} className="effectable">
             {levelScore}
           </div>
         </div>
       </div>
       <div className="highScore">
-        <div className="record">Record:</div>
+        <div className="record">
+          Record:<button onClick={resetHighScore}>Borrar</button>
+        </div>
         <div className="level">
-          Nivel:{" "}
+          Nivel:
           <div ref={highScoreLevelRef} className="effectable">
             {highScore.level}
           </div>
         </div>
         <div className="levelScore">
-          Imágenes sin repetir:{" "}
+          Sin repetir:
           <div ref={highScoreLevelScoreRef} className="effectable">
             {highScore.levelScore}
           </div>

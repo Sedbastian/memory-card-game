@@ -1,0 +1,108 @@
+div.imageSliderContainer {
+  height: 100%;
+  grid-row: 1 / 4;
+  display: grid;
+  grid-template-rows: max-content 1fr max-content;
+  grid-template-columns: max-content 1fr max-content;
+}
+
+div.imageSliderContainer > button {
+  position: relative;
+  z-index: 1;
+  padding: 2px;
+  color: #999999;
+  background-color: black;
+  font-size: calc(3vh + 3vw);
+  font-weight: 900;
+  font-family: Roboto;
+  border-radius: 4vh;
+  border: 1px solid #999999;
+}
+div.imageSliderContainer > button:hover {
+  background-color: #cccccc;
+  color: black;
+}
+div.imageSliderContainer > button:active {
+  background-color: white;
+  color: black;
+  opacity: 0.9;
+}
+div.imageSliderContainer > button.left {
+  grid-row: 2 / 3;
+  grid-column: 1 / 2;
+  opacity: 0.7;
+}
+div.imageSliderContainer > button.right {
+  grid-row: 2 / 3;
+  grid-column: 3 / 4;
+  opacity: 0.7;
+}
+div.imageSliderContainer > button.exit {
+  grid-row: 1 / 2;
+  grid-column: 2 / 3;
+  justify-self: center;
+  align-self: center;
+  padding: 1.2vmax 3vmax;
+  border: 1px solid #999999;
+  font-size: 2vh;
+  font-weight: 100;
+}
+
+div.imageSliderContainer > div.thumbnails {
+  grid-row: 3 / 4;
+  grid-column: 1 / 4;
+  display: flex;
+  gap: 2vh;
+  overflow-x: auto;
+}
+div.imageSliderContainer > div.thumbnails > img.thumbnail {
+  position: relative;
+  height: 5vh;
+  margin-top: 1.5vh;
+  margin-bottom: 1.5vh;
+  border-radius: 4px;
+}
+div.imageSliderContainer > div.thumbnails > img.thumbnail:hover {
+  z-index: 2;
+  transform: scale(1.5);
+  border: 1px solid black;
+}
+div.imageSliderContainer > div.thumbnails > img.thumbnail.showing {
+  z-index: 1;
+  transform: scale(1.5);
+  border: 1px solid black;
+}
+
+div.imageSliderContainer > div.thumbnails::-webkit-scrollbar {
+  height: 6px; /* width of the entire scrollbar */
+}
+div.imageSliderContainer > div.thumbnails::-webkit-scrollbar-track {
+  background: #000000; /* color of the tracking area */
+}
+div.imageSliderContainer > div.thumbnails::-webkit-scrollbar-thumb {
+  background-color: rgb(146, 127, 255); /* color of the scroll thumb */
+  border-radius: 9px; /* roundness of the scroll thumb */
+  /* border: 6px solid #000000; creates padding around scroll thumb */
+}
+div.imageSliderContainer > div.thumbnails::-webkit-scrollbar-thumb:hover {
+  background-image: linear-gradient(45deg, #654ea3, #370064);
+}
+
+div.imageSliderContainer > div.imagesContainer {
+  grid-row: 2 / 3;
+  grid-column: 1 / 4;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  }
+
+div.imageSliderContainer > div.imagesContainer > div.images {
+  padding-left: 50vw;
+  height: 95%;
+  display: flex;
+  gap: 2vh;
+}
+
+div.imageSliderContainer > div.imagesContainer > div.images > img {
+  border-radius: 8px;
+}

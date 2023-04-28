@@ -2,16 +2,10 @@ import React, { Fragment, useRef, useEffect } from "react";
 import "./styles/Board.css";
 import Card from "./Card";
 
-export default function Board({
-  level,
-  images,
-  addClickedCard,
-  tryAgain,
-  imagesArrayLength
-}) {
+export default function Board({ level, images, addClickedCard, tryAgain }) {
   const boardRef = useRef(null);
   const getReadyRef = useRef(null);
-  
+
   if (tryAgain) {
     const boardCopyRef = boardRef.current;
     const getReadyCopyRef = getReadyRef.current;
@@ -40,15 +34,12 @@ export default function Board({
   return (
     <Fragment>
       <div ref={getReadyRef} className="getReady">
-        {imagesArrayLength >= level * 3
-          ? tryAgain
-            ? "Esa última ya la habías elegido! Empezá de nuevo."
-            : (level === 1
-                ? "Preparate para el Nivel: " + level + "..."
-                : "¡Muy bien! Preparate para el Nivel: " + level + "...")
-          : "¡Ganaste, pasaste todos los niveles!"}
+        {tryAgain
+          ? "Esa última ya la habías elegido! Empezá de nuevo."
+          : level === 1
+          ? "Preparate para el Nivel: " + level + "..."
+          : "¡Muy bien! Preparate para el Nivel: " + level + "..."}
       </div>
-      {/* <div ref={tryAgainRef} className="tryAgain"></div> */}
       <div ref={boardRef} className="board" style={{ display: "none" }}>
         {[...images].map((image, index) => {
           return (
@@ -57,7 +48,6 @@ export default function Board({
               number={index}
               card={image}
               addClickedCard={addClickedCard}
-              // oneImageLoaded={oneImageLoaded}
             />
           );
         })}

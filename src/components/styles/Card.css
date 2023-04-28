@@ -4,11 +4,11 @@
   border-radius: 1vh;
 }
 
-img {
+img.card {
   height: 20vh;
 }
 
-img:hover {
+img.card:hover {
   transform: scale(1.04);
   border-style: double;
   cursor: pointer;

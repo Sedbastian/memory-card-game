@@ -4,12 +4,18 @@ import { randomElements, shuffle } from "./arrayFunctions";
 import Score from "./components/Score";
 import Messages from "./components/Messages";
 import Board from "./components/Board";
+import WinMessage from "./components/WinMessage";
+import ImageSlider from "./components/ImageSlider";
 import GithubSvg from "./components/GithubSvg";
 
 function App() {
   const path = require.context("./components/images", false, /\.jpg$/);
   const images = path.keys().map(path);
-  const [levelImages, setLevelImages] = useState(randomElements(images, 3));
+  const imagesAddedPerLevel = 3;
+  const lastLevel = Math.floor(images.length / imagesAddedPerLevel);
+  const [levelImages, setLevelImages] = useState(
+    randomElements(images, imagesAddedPerLevel)
+  );
 
   const [level, setLevel] = useState(1);
   const [levelScore, setLevelScore] = useState(0);
@@ -30,24 +36,20 @@ function App() {
 
   const tryAgainRef = useRef(false);
   const newLevelRef = useRef(true);
-  // const nImagesLoaded = useRef(0);
 
   const clickedCards = useRef([]);
 
-  // function oneImageLoaded() {
-  //   nImagesLoaded.current = nImagesLoaded.current + 1;
-  //   if (nImagesLoaded.current === levelImages.length) {
-  //     // setBoardStatus("showing");
-  //     nImagesLoaded.current = 0;
-  //   }
-  // }
+  const [imageSliderShowing, setImageSliderShowing] = useState(false);
+  function imageSliderToggle() {
+    setImageSliderShowing(prevState => !prevState);
+  }
 
   function addClickedCard(src) {
     if (clickedCards.current.includes(src)) {
       clickedCards.current = [];
       loseNreset();
       setLevelImages(shuffle(levelImages, []));
-    } else if (levelScore + 1 === level * 3) {
+    } else if (levelScore + 1 === level * imagesAddedPerLevel) {
       tryAgainRef.current = false;
       clickedCards.current = [];
       levelCompleted();
@@ -62,7 +64,7 @@ function App() {
   function addScore() {
     newLevelRef.current = false;
     setLevelScore(levelScore + 1);
-    if (levelScore + 1 > highScore.levelScore) {
+    if (level >= highScore.level && levelScore + 1 > highScore.levelScore) {
       setHighScore({ level: level, levelScore: levelScore + 1 });
       localStorage.setItem("highestLevelScore", levelScore + 1);
     }
@@ -77,50 +79,80 @@ function App() {
 
   function levelCompleted() {
     setLevelScore(0);
+    setLevel(level + 1);
     if (level + 1 > highScore.level) {
       setHighScore({ level: level + 1, levelScore: 0 });
       localStorage.setItem("highestLevel", level + 1);
       localStorage.setItem("highestLevelScore", 0);
     }
     newLevelRef.current = true;
-    if ((level + 1) * 3 <= images.length) {
-      setLevelImages(randomElements(images, (level + 1) * 3));
-      setLevel(level + 1);
+    if (level + 1 <= lastLevel) {
+      setLevelImages(randomElements(images, (level + 1) * imagesAddedPerLevel));
     }
   }
 
-  return (
+  function resetHighScore() {
+    setHighScore({ level: 0, levelScore: 0 });
+    localStorage.setItem("highestLevel", "0");
+    localStorage.setItem("highestLevelScore", "0");
+  }
+
+  function startOver() {
+    setLevel(1);
+    setLevelImages(randomElements(images, 1 * imagesAddedPerLevel));
+  }
+
+  return imageSliderShowing ? (
+    <ImageSlider imagesArray={images} imageSliderToggle={imageSliderToggle} />
+  ) : (
     <Fragment>
       <header>
-        <div className="container">
-          <div className="title">
-            <div className="memoryHeader">Memory</div>
-            <div className="cardHeader">Card</div>
-            <div className="gameHeader">Game</div>
-          </div>
-          <Score level={level} levelScore={levelScore} highScore={highScore} />
-        </div>
+        <div className="memoryHeader">Memory</div>
+        <div className="cardHeader">Card</div>
+        <div className="gameHeader">Game</div>
       </header>
+      <button
+        className="imageSlider"
+        onClick={() => setImageSliderShowing(true)}
+      >
+        Ver Imágenes
+      </button>
+      <Score
+        level={level}
+        levelScore={levelScore}
+        highScore={highScore}
+        resetHighScore={resetHighScore}
+      />
       <main>
-        <Messages
-          level={level}
-          levelScore={levelScore}
-          tryAgain={tryAgainRef.current}
-          newLevel={newLevelRef.current}
-        />
-        <Board
-          level={level}
-          images={[...levelImages]}
-          // oneImageLoaded={oneImageLoaded}
-          levelScore={levelScore}
-          addClickedCard={addClickedCard}
-          addScore={addScore}
-          tryAgain={tryAgainRef.current}
-          levelCompleted={levelCompleted}
-          imagesArrayLength={images.length}
-        />
+        {level < lastLevel + 1 ? (
+          <Fragment>
+            <Messages
+              level={level}
+              levelScore={levelScore}
+              tryAgain={tryAgainRef.current}
+              newLevel={newLevelRef.current}
+            />
+            <Board
+              level={level}
+              images={[...levelImages]}
+              levelScore={levelScore}
+              addClickedCard={addClickedCard}
+              addScore={addScore}
+              tryAgain={tryAgainRef.current}
+              levelCompleted={levelCompleted}
+            />
+          </Fragment>
+        ) : null}
+
+        {level === lastLevel + 1 ? (
+          <WinMessage
+            startOver={startOver}
+            images={images}
+            imageSliderToggle={imageSliderToggle}
+          />
+        ) : null}
       </main>
-      <footer className="footerTag">
+      <footer>
         <a href="https://github.com/Sedbastian" className="sedbastian">
           Sedbastian
         </a>

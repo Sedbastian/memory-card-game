@@ -1,5 +1,6 @@
 main > div.getReady {
-  font-size: 4vh;
+  font-size: 1.5rem;
+  text-align: center;
 }
 
 main > div.board {

@@ -1,4 +1,4 @@
-import React, { forwardRef, Fragment, useRef, useEffect } from "react";
+import React, { Fragment, useRef, useEffect } from "react";
 import "./styles/Board.css";
 import Card from "./Card";
 

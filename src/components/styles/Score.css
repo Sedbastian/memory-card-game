@@ -1,22 +1,31 @@
-div.score {
-  justify-self: center;
-  padding: 2vh;
-  border-style: none;
-  border-radius: 4vh;
-  background-image: linear-gradient(0deg, #000000, #370064);
-  font-size: 3vh;
-  color: orange;
+@media (max-width: 880px) {
+  div.highScore {
+    top: 3rem !important;
+  }
 }
+
 div.highScore {
   position: absolute;
-  top: calc(12vh - 6vw);
-  right: 1vh;
-  padding: 2vh;
+  z-index: 3;
+  top: 0.3rem;
+  right: 0.3rem;
+  padding: 0.5rem;
   border-style: none;
-  border-radius: 4vh;
-  background-image: linear-gradient(0deg, #000000, #370064);
-  font-size: 2vh;
+  border-radius: 1rem;
+  background-image: linear-gradient(0deg, #000000, rgb(189, 50, 0));
+  font-size: 0.8rem;
   color: forestgreen;
+}
+div.score {
+  position: relative;
+  z-index: 2;
+  justify-self: center;
+  padding: 0.5rem;
+  border-style: none;
+  border-radius: 1rem;
+  background-image: linear-gradient(0deg, #000000, rgb(89, 179, 0));
+  font-size: 1rem;
+  color: orange;
 }
 
 div.score > div.level,
@@ -24,7 +33,6 @@ div.score > div.levelScore,
 div.highScore > div.level,
 div.highScore > div.levelScore {
   display: flex;
-  gap: 2vh;
 }
 
 div.score > div.scoreTitle {
@@ -39,6 +47,7 @@ div.highScore > div.record {
 }
 
 .effectable {
+  margin-left: 0.5rem;
   transition: transform 800ms ease-in-out;
 }
 
@@ -49,12 +58,12 @@ div.highScore > div.record {
 
 div.record > button {
   color: black;
-  margin-left: 3vh;
+  margin-left: 1rem;
   border-style: none;
-  border-radius: 2vh;
+  border-radius: 0.5rem;
   background-color: forestgreen;
   font-family: Roboto;
-  font-size: 2vh;
+  font-size: 0.8rem;
 }
 
 div.record > button:hover {

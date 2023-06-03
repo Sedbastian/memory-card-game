@@ -17,10 +17,12 @@ export default function Score({
     function removeEffectClass() {
       ref.classList.remove("effect");
     }
-    setTimeout(() => {
-      ref.addEventListener("transitionend", removeEffectClass);
-      ref.classList.add("effect");
-    }, 100);
+    ref.addEventListener("transitionend", removeEffectClass);
+    ref.classList.add("effect");
+    // setTimeout(() => {
+    //   ref.addEventListener("transitionend", removeEffectClass);
+    //   ref.classList.add("effect");
+    // }, 100);
     return () => {
       ref.removeEventListener("transitionend", removeEffectClass);
       ref.classList.remove("effect");
@@ -32,10 +34,12 @@ export default function Score({
     function removeEffectClass() {
       ref.classList.remove("effect");
     }
-    setTimeout(() => {
-      ref.addEventListener("transitionend", removeEffectClass);
-      ref.classList.add("effect");
-    }, 100);
+    ref.addEventListener("transitionend", removeEffectClass);
+    ref.classList.add("effect");
+    // setTimeout(() => {
+    //   ref.addEventListener("transitionend", removeEffectClass);
+    //   ref.classList.add("effect");
+    // }, 100);
     return () => {
       ref.removeEventListener("transitionend", removeEffectClass);
       ref.classList.remove("effect");
@@ -47,10 +51,12 @@ export default function Score({
     function removeEffectClass() {
       ref.classList.remove("effect");
     }
-    setTimeout(() => {
-      ref.addEventListener("transitionend", removeEffectClass);
-      ref.classList.add("effect");
-    }, 100);
+    ref.addEventListener("transitionend", removeEffectClass);
+    ref.classList.add("effect");
+    // setTimeout(() => {
+    //   ref.addEventListener("transitionend", removeEffectClass);
+    //   ref.classList.add("effect");
+    // }, 100);
     return () => {
       ref.removeEventListener("transitionend", removeEffectClass);
       ref.classList.remove("effect");
@@ -62,10 +68,12 @@ export default function Score({
     function removeEffectClass() {
       ref.classList.remove("effect");
     }
-    setTimeout(() => {
-      ref.addEventListener("transitionend", removeEffectClass);
-      ref.classList.add("effect");
-    }, 100);
+    ref.addEventListener("transitionend", removeEffectClass);
+    ref.classList.add("effect");
+    // setTimeout(() => {
+    //   ref.addEventListener("transitionend", removeEffectClass);
+    //   ref.classList.add("effect");
+    // }, 100);
     return () => {
       ref.removeEventListener("transitionend", removeEffectClass);
       ref.classList.remove("effect");

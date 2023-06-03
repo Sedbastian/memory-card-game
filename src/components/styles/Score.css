@@ -48,12 +48,12 @@ div.highScore > div.record {
 
 .effectable {
   margin-left: 0.5rem;
-  transition: transform 800ms ease-in-out;
+  transition: transform 400ms ease-in-out;
 }
 
 .effect {
   transform: scale(5);
-  transition: transform 200ms ease-in-out;
+  /* transition: transform 200ms ease-in-out; */
 }
 
 div.record > button {

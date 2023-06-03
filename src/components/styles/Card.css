@@ -10,7 +10,7 @@
 .card {
   margin: 0.2rem;
   border: 3px solid darkred;
-  border-radius: 1vh;
+  border-radius: 0.5rem;
 }
 
 img.card.turn {
@@ -18,7 +18,7 @@ img.card.turn {
   animation-duration: 500ms;
   animation-iteration-count: 1;
   animation-direction: normal;
-  animation-timing-function: linear;
+  animation-timing-function: ease-in;
 }
 
 img.card {

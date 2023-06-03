@@ -12,7 +12,8 @@ function App() {
   const path = require.context("./components/images", false, /\.jpg$/);
   const images = path.keys().map(path);
   const imagesAddedPerLevel = 3;
-  const lastLevel = Math.floor(images.length / imagesAddedPerLevel);
+  const lastLevel = 1;
+  // const lastLevel = Math.floor(images.length / imagesAddedPerLevel);
   const [levelImages, setLevelImages] = useState(
     randomElements(images, imagesAddedPerLevel)
   );

@@ -119,7 +119,7 @@ main {
 footer {
   display: flex;
   justify-content: center;
-  gap: 2vh;
+  gap: 1rem;
 }
 footer a {
   text-decoration: none;
@@ -140,5 +140,5 @@ footer div.year {
   color: rgb(85, 26, 139);
 }
 footer svg {
-  height: 3vh;
+  height: 1rem;
 }

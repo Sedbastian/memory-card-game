@@ -7,13 +7,25 @@ export default function ImageSlider({ imagesArray, imageSliderToggle }) {
 
   useEffect(() => {
     const imagesArray = getImagesArray();
+    const firstImage = imagesArray[0];
+    firstImage.addEventListener("load", () => {
+      firstImage.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "center"
+      });
+    });
+  }, []);
+
+  useEffect(() => {
+    const imagesArray = getImagesArray();
     const imageNode = imagesArray[imgShowing];
     imageNode.scrollIntoView({
       behavior: "smooth",
       block: "nearest",
       inline: "center"
     });
-  });
+  }, [imgShowing]);
 
   function getImagesArray() {
     if (!imagesRef.current) {

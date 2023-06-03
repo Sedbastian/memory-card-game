@@ -1,7 +1,24 @@
+@keyframes turn {
+  from {
+    transform: rotateX(90deg);
+  }
+  to {
+    transform: rotateX(0deg);
+  }
+}
+
 .card {
   margin: 0.2rem;
   border: 3px solid darkred;
   border-radius: 1vh;
+}
+
+img.card.turn {
+  animation-name: turn;
+  animation-duration: 500ms;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-timing-function: linear;
 }
 
 img.card {

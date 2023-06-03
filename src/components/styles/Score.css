@@ -53,7 +53,6 @@ div.highScore > div.record {
 
 .effect {
   transform: scale(5);
-  /* transition: transform 200ms ease-in-out; */
 }
 
 div.record > button {
